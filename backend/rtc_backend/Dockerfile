@@ -1,4 +1,3 @@
-
 FROM rust:bookworm AS builder
 WORKDIR /app
 
@@ -30,10 +29,12 @@ COPY --from=builder /usr/local/cargo/bin/diesel /usr/local/bin/diesel
 
 COPY --from=builder /app/migrations /app/migrations
 COPY --from=builder /app/diesel.toml /app/diesel.toml
+COPY --from=builder /app/docker/entrypoint.sh /app/entrypoint.sh
 
-COPY docker/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 ENV RUST_LOG=info
+
 EXPOSE 3000
+
 ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
