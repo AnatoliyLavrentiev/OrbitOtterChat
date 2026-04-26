@@ -5,14 +5,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config libssl-dev libpq-dev ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
-COPY Cargo.toml Cargo.lock ./
+COPY backend/rtc_backend/Cargo.toml backend/rtc_backend/Cargo.lock ./
 RUN mkdir -p src && printf 'fn main(){println!("dummy");}\n' > src/main.rs
 RUN cargo build --release --locked
 RUN rm -rf src
 
 RUN cargo install diesel_cli --no-default-features --features postgres
 
-COPY . .
+COPY backend/rtc_backend/ .
 
 RUN touch src/main.rs && cargo build --release --locked
 
