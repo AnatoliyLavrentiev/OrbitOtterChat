@@ -10,7 +10,7 @@ describe("runtime endpoint resolution", () => {
 
   it("uses localhost HTTP endpoints for Tauri custom protocol windows", () => {
     expect(resolveApiBaseUrl(undefined, "tauri:", "localhost")).toBe("http://localhost:3000");
-    expect(resolveWsBaseUrl("tauri:", "localhost")).toBe("ws://localhost:3000");
+    expect(resolveWsBaseUrl(undefined, "tauri:", "localhost")).toBe("ws://localhost:3000");
   });
 
   it("keeps browser protocol semantics for web development", () => {
@@ -18,6 +18,8 @@ describe("runtime endpoint resolution", () => {
     expect(resolveApiBaseUrl(undefined, "https:", "chat.example.test")).toBe(
       "https://chat.example.test:3000",
     );
-    expect(resolveWsBaseUrl("https:", "chat.example.test")).toBe("wss://chat.example.test:3000");
+    expect(resolveWsBaseUrl(undefined, "https:", "chat.example.test")).toBe(
+      "wss://chat.example.test:3000",
+    );
   });
 });

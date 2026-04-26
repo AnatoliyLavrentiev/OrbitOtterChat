@@ -63,14 +63,13 @@ cargo llvm-cov --locked --fail-under-lines 70 --lcov --output-path coverage/lcov
 cargo llvm-cov report --summary-only
 ```
 
-CI uploads the LCOV report as `backend-lcov`.
-
 ## Frontend Checks
 
 ```bash
 cd chatroom
 npm ci
 npm run lint
+npx next typegen
 npx tsc --noEmit
 npm test
 npm run build
