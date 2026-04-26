@@ -1,0 +1,14 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "backend/rtc_backend/Dockerfile"
+watchPatterns = [
+  "backend/rtc_backend/**",
+  ".dockerignore",
+  "railway.toml"
+]
+
+[deploy]
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
