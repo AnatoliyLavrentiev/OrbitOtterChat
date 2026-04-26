@@ -1,0 +1,58 @@
+services:
+  db:
+    image: postgres:16
+    container_name: rtc_postgres
+    environment:
+      POSTGRES_USER: rtc_user
+      POSTGRES_PASSWORD: rtc_pass
+      POSTGRES_DB: rtc
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rtc_user -d rtc"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend/rtc_backend
+      dockerfile: Dockerfile
+    container_name: rtc_backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://rtc_user:rtc_pass@db:5432/rtc
+      RUST_LOG: info
+      JWT_SECRET: change_me_in_production
+    ports:
+      - "3000:3000"
+    volumes:
+      - backend_uploads:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./chatroom
+      dockerfile: dockerfile
+    container_name: chatroom
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./chatroom:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - WATCHPACK_POLLING=true        
+      - CHOKIDAR_USEPOLLING=true      
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  backend_uploads:

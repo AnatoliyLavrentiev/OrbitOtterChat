@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=/home/anatoliy/Documents/T-DEV-600-REN_13/backend/rtc_backend/target/debug/build/mime_guess-ac9ffee0dfa9dd7a/out/mime_types_generated.rs

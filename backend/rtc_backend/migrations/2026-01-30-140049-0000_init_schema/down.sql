@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS invite_uses;
+DROP TABLE IF EXISTS invites;
+DROP TABLE IF EXISTS channels;
+DROP TABLE IF EXISTS server_members;
+DROP TABLE IF EXISTS servers;
+DROP TABLE IF EXISTS users;
+
+DROP TYPE IF EXISTS member_role;

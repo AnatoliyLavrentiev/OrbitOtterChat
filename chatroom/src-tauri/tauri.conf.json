@@ -1,0 +1,43 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "OrbitOtterChat",
+  "version": "0.1.0",
+  "identifier": "com.epitech.orbitotterchat",
+  "build": {
+    "frontendDist": "../out",
+    "devUrl": "http://localhost:3001",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "OrbitOtterChat",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "Epitech MSC Pro Promo 2028 - T-DEV-600-REN_13",
+    "homepage": "https://github.com/EpitechMscProPromo2028/T-DEV-600-REN_13",
+    "category": "SocialNetworking",
+    "license": "MIT",
+    "shortDescription": "Real-time desktop and web chat client.",
+    "longDescription": "OrbitOtterChat is a real-time team chat application with servers, channels, direct messages, moderation tools, reactions, pins, mentions, file uploads, profile settings, and live WebSocket presence.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+target
+target/
+**/target
+**/target/
+.git/
+node_modules/
+*.log
+.env
+.DS_Store
+.idea/
+.vscode/

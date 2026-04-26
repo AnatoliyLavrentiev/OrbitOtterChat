@@ -1,0 +1,10 @@
+/home/anatoliy/Documents/T-DEV-600-REN_13/backend/rtc_backend/target/debug/deps/tokio_tungstenite-6c0aa1e5380f5426.d: /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/lib.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/compat.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/connect.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/handshake.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/stream.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/tls.rs
+
+/home/anatoliy/Documents/T-DEV-600-REN_13/backend/rtc_backend/target/debug/deps/libtokio_tungstenite-6c0aa1e5380f5426.rmeta: /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/lib.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/compat.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/connect.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/handshake.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/stream.rs /home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/tls.rs
+
+/home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/lib.rs:
+/home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/compat.rs:
+/home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/connect.rs:
+/home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/handshake.rs:
+/home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/stream.rs:
+/home/anatoliy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-tungstenite-0.28.0/src/tls.rs:
