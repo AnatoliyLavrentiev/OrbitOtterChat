@@ -197,15 +197,10 @@ pub fn ensure_dm_member(
 mod tests {
     use super::*;
     use diesel::Connection;
-    use std::env;
     use uuid::Uuid;
 
     fn db_conn() -> Option<PgConnection> {
-        dotenvy::dotenv().ok();
-        let url = env::var("TEST_DATABASE_URL")
-            .ok()
-            .or_else(|| env::var("DATABASE_URL").ok())?;
-        PgConnection::establish(&url).ok()
+        crate::test_support::migrated_test_connection()
     }
 
     #[test]

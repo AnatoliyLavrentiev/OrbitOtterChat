@@ -8,6 +8,8 @@ mod repositories;
 mod schema;
 mod security;
 mod services;
+#[cfg(test)]
+pub(crate) mod test_support;
 
 use crate::db::DbPool;
 use crate::realtime::WsHub;
@@ -110,27 +112,16 @@ mod tests {
     use super::*;
     use axum::body::{to_bytes, Body};
     use axum::http::{Method, Request, StatusCode};
-    use diesel::pg::PgConnection;
-    use diesel::Connection;
-    use diesel_migrations::{FileBasedMigrations, MigrationHarness};
     use serde_json::{json, Value};
     use tower::ServiceExt;
     use uuid::Uuid;
 
     fn test_db_url() -> Option<String> {
-        dotenvy::dotenv().ok();
-        std::env::var("TEST_DATABASE_URL")
-            .ok()
-            .or_else(|| std::env::var("DATABASE_URL").ok())
-            .map(|s| s.trim().to_string())
-            .filter(|s| !s.is_empty())
+        crate::test_support::test_db_url()
     }
 
     fn setup_app() -> Option<Router> {
         let database_url = test_db_url()?;
-        if PgConnection::establish(&database_url).is_err() {
-            return None;
-        }
         if std::env::var("JWT_SECRET").is_err() {
             std::env::set_var("JWT_SECRET", "test-jwt-secret");
         }
@@ -138,8 +129,7 @@ mod tests {
         let pool = db::create_pool_with_max_size(&database_url, 2);
         {
             let mut conn = pool.get().ok()?;
-            let migrations = FileBasedMigrations::from_path("./migrations").ok()?;
-            conn.run_pending_migrations(migrations).ok()?;
+            crate::test_support::run_migrations(&mut conn)?;
         }
 
         let state = AppState {
