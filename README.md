@@ -114,6 +114,28 @@ Open `http://localhost:3001`.
 
 ## Build Desktop Packages
 
+Build release desktop packages that connect to the Railway backend:
+
+```bash
+./scripts/build-desktop-release.sh
+```
+
+By default the release wrapper builds the desktop app with:
+
+```text
+NEXT_PUBLIC_API_URL=https://orbitotterchat-production.up.railway.app
+```
+
+The frontend derives WebSocket traffic from the same URL, so the packaged app connects to `wss://orbitotterchat-production.up.railway.app/ws`.
+
+To build against another backend, override the environment variable:
+
+```bash
+NEXT_PUBLIC_API_URL=https://example-backend.test ./scripts/build-desktop-release.sh
+```
+
+For a local desktop build without the release wrapper:
+
 ```bash
 cd chatroom
 npm ci

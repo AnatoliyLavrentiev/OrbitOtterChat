@@ -31,6 +31,20 @@ npm run build
 
 ## Desktop Build
 
+Recommended release build from the repository root:
+
+```bash
+./scripts/build-desktop-release.sh
+```
+
+That wrapper builds the Tauri bundles with the Railway backend:
+
+```text
+https://orbitotterchat-production.up.railway.app
+```
+
+For a local manual build from this directory:
+
 ```bash
 npm run tauri -- build
 ```

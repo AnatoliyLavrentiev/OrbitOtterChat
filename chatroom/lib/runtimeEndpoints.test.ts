@@ -8,6 +8,15 @@ describe("runtime endpoint resolution", () => {
     );
   });
 
+  it("maps the Railway release backend to HTTPS API and WSS websocket URLs", () => {
+    const railwayUrl = "https://orbitotterchat-production.up.railway.app";
+
+    expect(resolveApiBaseUrl(railwayUrl, "tauri:", "localhost")).toBe(railwayUrl);
+    expect(resolveWsBaseUrl(railwayUrl, "tauri:", "localhost")).toBe(
+      "wss://orbitotterchat-production.up.railway.app",
+    );
+  });
+
   it("uses localhost HTTP endpoints for Tauri custom protocol windows", () => {
     expect(resolveApiBaseUrl(undefined, "tauri:", "localhost")).toBe("http://localhost:3000");
     expect(resolveWsBaseUrl(undefined, "tauri:", "localhost")).toBe("ws://localhost:3000");
