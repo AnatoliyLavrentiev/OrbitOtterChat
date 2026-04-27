@@ -1,0 +1,49 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    branches:
+      - main
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: cd-production-${{ github.event.workflow_run.head_branch || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  railway-smoke:
+    name: Railway smoke check
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+
+    env:
+      BACKEND_URL: https://orbitotterchat-production.up.railway.app
+
+    steps:
+      - name: Wait for Railway deployment
+        run: sleep 45
+
+      - name: Smoke check backend health
+        run: |
+          set -euo pipefail
+
+          for attempt in {1..20}; do
+            status="$(curl -fsS -o /tmp/orbitotterchat-backend-smoke.txt -w "%{http_code}" "$BACKEND_URL/" || true)"
+            body="$(cat /tmp/orbitotterchat-backend-smoke.txt 2>/dev/null || true)"
+
+            if [ "$status" = "200" ]; then
+              echo "Backend smoke check passed with HTTP 200"
+              echo "$body"
+              exit 0
+            fi
+
+            echo "Attempt $attempt/20 failed with HTTP status: ${status:-curl-error}"
+            sleep 15
+          done
+
+          echo "Backend smoke check failed for $BACKEND_URL"
+          exit 1
