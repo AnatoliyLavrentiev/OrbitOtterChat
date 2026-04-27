@@ -3,7 +3,11 @@ set -eu
 
 cd /app
 
-echo "[entrypoint] DATABASE_URL=${DATABASE_URL:-<missing>}"
+if [ -z "${DATABASE_URL:-}" ]; then
+  echo "[entrypoint] DATABASE_URL is missing"
+else
+  echo "[entrypoint] DATABASE_URL is set"
+fi
 
 echo "[entrypoint] Running migrations..."
 i=0
